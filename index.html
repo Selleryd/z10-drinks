@@ -46,55 +46,12 @@
                         inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
         
-        .cup-container {
-            perspective: 1200px;
-            transform-style: preserve-3d;
-        }
-        
         .cup {
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            transform-origin: center bottom;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+            transition: transform 0.2s ease;
         }
         
         .cup:hover {
-            transform: translateY(-12px) rotateX(8deg) scale(1.1);
-            filter: drop-shadow(0 20px 40px rgba(255, 215, 0, 0.2));
-        }
-        
-        .steam {
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .cup:hover .steam {
-            opacity: 1;
-            animation: luxury-steam 2.5s ease-in-out infinite;
-        }
-        
-        @keyframes luxury-steam {
-            0% { transform: translateY(0) scale(1); opacity: 0.8; }
-            50% { transform: translateY(-15px) scale(1.2); opacity: 0.5; }
-            100% { transform: translateY(-30px) scale(1.4); opacity: 0; }
-        }
-        
-        .foam-animation {
-            animation: luxury-foam 4s ease-in-out infinite;
-        }
-        
-        @keyframes luxury-foam {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.03); opacity: 1; }
-        }
-        
-        .liquid-fill {
-            animation: luxury-fill 1.5s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        
-        @keyframes luxury-fill {
-            0% { height: 0%; opacity: 0; }
-            50% { opacity: 0.7; }
-            100% { height: var(--fill-height); opacity: 1; }
+            transform: translateY(-4px) scale(1.05);
         }
         
         .luxury-glow {
@@ -104,94 +61,35 @@
         }
         
         .card-hover {
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            transform-style: preserve-3d;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         
         .card-hover:hover {
-            transform: translateY(-8px) rotateX(5deg) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
-                        0 0 30px rgba(255, 215, 0, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
         
         .drink-card {
             min-width: 160px;
-            animation: luxury-slideIn 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .drink-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.6s;
-        }
-        
-        .drink-card:hover::before {
-            left: 100%;
-        }
-        
-        @keyframes luxury-slideIn {
-            0% { opacity: 0; transform: translateY(30px) rotateX(-10deg); }
-            100% { opacity: 1; transform: translateY(0) rotateX(0deg); }
-        }
-        
-        .luxury-pulse {
-            animation: luxury-pulse 3s infinite;
-        }
-        
-        @keyframes luxury-pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
-            50% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
         }
         
         .filter-btn {
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .filter-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(139, 69, 19, 0.1));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .filter-btn:hover::before {
-            opacity: 1;
+            transition: background 0.2s ease;
         }
         
         .filter-btn.active {
             background: linear-gradient(135deg, #FFD700, #B8860B);
             color: #000;
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
         }
         
         .nav-btn {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
-            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.8);
             border: 1px solid rgba(0, 0, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: background 0.2s ease;
         }
         
         .nav-btn:hover {
-            background: linear-gradient(145deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            background: rgba(255, 215, 0, 0.2);
         }
         
         .luxury-modal {
@@ -210,24 +108,10 @@
         
         .click-indicator {
             background: linear-gradient(135deg, #FFD700, #FFA500);
-            animation: luxury-bounce 2s infinite;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-        }
-        
-        @keyframes luxury-bounce {
-            0%, 100% { transform: scale(1) translateY(0); }
-            50% { transform: scale(1.1) translateY(-2px); }
         }
         
         .hint-text {
             color: rgba(139, 69, 19, 0.8);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-            animation: luxury-glow-text 3s ease-in-out infinite;
-        }
-        
-        @keyframes luxury-glow-text {
-            0%, 100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
-            50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
         }
     </style>
 </head>
@@ -653,8 +537,7 @@
             const cupHeight = Math.max(40, parseInt(drink.cupHeight) * 0.6);
 
             return `
-                <svg width="50" height="${cupHeight}" viewBox="0 0 50 ${cupHeight}" class="cup pulse-ring">
-                    ${steamElements}
+                <svg width="50" height="${cupHeight}" viewBox="0 0 50 ${cupHeight}" class="cup">
                     <!-- Cup body -->
                     <path d="M10 12 L10 ${cupHeight - 6} Q10 ${cupHeight - 3} 13 ${cupHeight - 3} L37 ${cupHeight - 3} Q40 ${cupHeight - 3} 40 ${cupHeight - 6} L40 12 Q40 9 37 9 L13 9 Q10 9 10 12 Z" 
                           fill="rgba(255,255,255,0.9)" 
@@ -669,18 +552,12 @@
                     
                     <!-- Liquid -->
                     <path d="M11.5 13.5 L11.5 ${cupHeight - 7.5} Q11.5 ${cupHeight - 5} 14 ${cupHeight - 5} L36 ${cupHeight - 5} Q38.5 ${cupHeight - 5} 38.5 ${cupHeight - 7.5} L38.5 13.5 Z" 
-                          fill="${drink.liquidColor}" 
-                          class="liquid-fill" 
-                          style="--fill-height: ${100 - (parseInt(drink.foamHeight) / parseInt(drink.cupHeight)) * 100}%"/>
+                          fill="${drink.liquidColor}"/>
                     
                     ${drink.foamHeight !== "0px" ? `
                     <!-- Foam -->
                     <ellipse cx="25" cy="13.5" rx="14" ry="${Math.max(2, parseInt(drink.foamHeight)/3)}" 
-                             fill="#FFFBF0" 
-                             class="foam-animation"/>
-                    <ellipse cx="22" cy="12" rx="2" ry="1.2" fill="#FFFFFF" opacity="0.8"/>
-                    <ellipse cx="28" cy="12.5" rx="1.5" ry="1" fill="#FFFFFF" opacity="0.8"/>
-                    <ellipse cx="31" cy="11.5" rx="1.8" ry="1.2" fill="#FFFFFF" opacity="0.8"/>
+                             fill="#FFFBF0"/>
                     ` : ''}
                     
                     ${iceElements}
@@ -721,7 +598,7 @@
 
         function createDrinkCard(drink) {
             return `
-                <div class="drink-card glass-card rounded-2xl p-4 card-hover cursor-pointer luxury-glow relative luxury-pulse" 
+                <div class="drink-card glass-card rounded-2xl p-4 card-hover cursor-pointer relative" 
                      onclick="showDrinkDetail('${drink.name}')">
                     <div class="absolute top-2 right-2 text-xs click-indicator text-black rounded-full w-5 h-5 flex items-center justify-center font-bold">
                         !
@@ -808,5 +685,5 @@
         // Initialize
         renderDrinks();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95f37237f5c374e8',t:'MTc1MjUyMTU0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95f380b49615f02b',t:'MTc1MjUyMjE0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
