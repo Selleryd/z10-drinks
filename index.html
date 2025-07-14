@@ -9,13 +9,13 @@
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
             min-height: 100vh;
             overflow-x: hidden;
         }
         
         .luxury-bg {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
             position: relative;
         }
         
@@ -26,24 +26,24 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(139, 69, 19, 0.05) 0%, transparent 50%);
             pointer-events: none;
         }
         
         .glass-morphism {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         
         .glass-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
         
         .cup-container {
@@ -182,9 +182,9 @@
         }
         
         .nav-btn {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
         }
         
@@ -195,10 +195,10 @@
         }
         
         .luxury-modal {
-            background: linear-gradient(145deg, rgba(20, 20, 20, 0.95), rgba(10, 10, 10, 0.95));
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95));
             backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8),
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2),
                         0 0 100px rgba(255, 215, 0, 0.1);
         }
         
@@ -220,7 +220,7 @@
         }
         
         .hint-text {
-            color: rgba(255, 215, 0, 0.8);
+            color: rgba(139, 69, 19, 0.8);
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
             animation: luxury-glow-text 3s ease-in-out infinite;
         }
@@ -238,19 +238,19 @@
 
         <!-- Filters -->
         <div class="flex flex-wrap justify-center gap-3 mb-8">
-            <button onclick="filterDrinks('all')" class="filter-btn active px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-white">
+            <button onclick="filterDrinks('all')" class="filter-btn active px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-gray-700">
                 All
             </button>
-            <button onclick="filterDrinks('milk')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-white">
+            <button onclick="filterDrinks('milk')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-gray-700">
                 Milk
             </button>
-            <button onclick="filterDrinks('foam')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-white">
+            <button onclick="filterDrinks('foam')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-gray-700">
                 Foam
             </button>
-            <button onclick="filterDrinks('cold')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-white">
+            <button onclick="filterDrinks('cold')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-gray-700">
                 Cold
             </button>
-            <button onclick="filterDrinks('strong')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-white">
+            <button onclick="filterDrinks('strong')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-gray-700">
                 Strong
             </button>
         </div>
@@ -259,12 +259,12 @@
         <div class="relative">
             <!-- Navigation Buttons -->
             <button onclick="scrollCarousel(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 nav-btn rounded-full p-4">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
             </button>
             <button onclick="scrollCarousel(1)" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 nav-btn rounded-full p-4">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
             </button>
@@ -289,31 +289,31 @@
             <div class="luxury-modal rounded-3xl p-8 max-w-md w-full transform transition-all duration-500 scale-95">
                 <div class="text-center">
                     <div id="modal-cup" class="mb-6"></div>
-                    <h3 id="modal-title" class="text-3xl font-bold text-white mb-3"></h3>
-                    <p id="modal-description" class="text-gray-300 mb-8 text-lg"></p>
+                    <h3 id="modal-title" class="text-3xl font-bold text-gray-800 mb-3"></h3>
+                    <p id="modal-description" class="text-gray-600 mb-8 text-lg"></p>
                     
                     <div class="grid grid-cols-2 gap-4 text-sm">
                         <div class="glass-card p-4 rounded-xl">
-                            <div class="font-semibold text-white mb-1">Volume</div>
-                            <div id="modal-volume" class="text-yellow-400 font-bold text-lg"></div>
+                            <div class="font-semibold text-gray-800 mb-1">Volume</div>
+                            <div id="modal-volume" class="text-amber-600 font-bold text-lg"></div>
                         </div>
                         <div class="glass-card p-4 rounded-xl">
-                            <div class="font-semibold text-white mb-1">Intensity</div>
-                            <div id="modal-intensity" class="text-yellow-400 font-bold text-lg"></div>
+                            <div class="font-semibold text-gray-800 mb-1">Intensity</div>
+                            <div id="modal-intensity" class="text-amber-600 font-bold text-lg"></div>
                         </div>
                         <div class="glass-card p-4 rounded-xl">
-                            <div class="font-semibold text-white mb-1">Foam Level</div>
-                            <div id="modal-foam" class="text-yellow-400 font-bold text-lg"></div>
+                            <div class="font-semibold text-gray-800 mb-1">Foam Level</div>
+                            <div id="modal-foam" class="text-amber-600 font-bold text-lg"></div>
                         </div>
                         <div class="glass-card p-4 rounded-xl">
-                            <div class="font-semibold text-white mb-1">Milk %</div>
-                            <div id="modal-milk" class="text-yellow-400 font-bold text-lg"></div>
+                            <div class="font-semibold text-gray-800 mb-1">Milk %</div>
+                            <div id="modal-milk" class="text-amber-600 font-bold text-lg"></div>
                         </div>
                     </div>
                     
                     <div class="mt-8">
-                        <div class="font-semibold text-white mb-3 text-lg">Suggested Cup</div>
-                        <div id="modal-cup-type" class="text-yellow-400 font-medium text-lg"></div>
+                        <div class="font-semibold text-gray-800 mb-3 text-lg">Suggested Cup</div>
+                        <div id="modal-cup-type" class="text-amber-600 font-medium text-lg"></div>
                     </div>
                 </div>
                 
@@ -729,7 +729,7 @@
                     <div class="cup-container flex justify-center mb-3">
                         ${createCupSVG(drink)}
                     </div>
-                    <h3 class="text-sm font-bold text-white text-center mb-2">${drink.name}</h3>
+                    <h3 class="text-sm font-bold text-gray-800 text-center mb-2">${drink.name}</h3>
                     <div class="text-center">
                         <span class="luxury-badge text-black px-3 py-1 rounded-full text-xs font-bold">
                             ${drink.volume}
@@ -781,15 +781,15 @@
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             setTimeout(() => {
-                modal.querySelector('.bg-white, .bg-gray-800').classList.remove('scale-95');
-                modal.querySelector('.bg-white, .bg-gray-800').classList.add('scale-100');
+                modal.querySelector('.luxury-modal').classList.remove('scale-95');
+                modal.querySelector('.luxury-modal').classList.add('scale-100');
             }, 10);
         }
 
         function closeModal() {
             const modal = document.getElementById('drink-modal');
-            modal.querySelector('.bg-white, .bg-gray-800').classList.remove('scale-100');
-            modal.querySelector('.bg-white, .bg-gray-800').classList.add('scale-95');
+            modal.querySelector('.luxury-modal').classList.remove('scale-100');
+            modal.querySelector('.luxury-modal').classList.add('scale-95');
             setTimeout(() => {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
@@ -808,5 +808,5 @@
         // Initialize
         renderDrinks();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95f36cb565b474e8',t:'MTc1MjUyMTMyMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95f37237f5c374e8',t:'MTc1MjUyMTU0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
