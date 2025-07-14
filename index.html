@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jura Z10 Coffee Possibilities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .luxury-bg {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+            position: relative;
+        }
+        
+        .luxury-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        
+        .cup-container {
+            perspective: 1200px;
+            transform-style: preserve-3d;
+        }
+        
+        .cup {
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-origin: center bottom;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+        
+        .cup:hover {
+            transform: translateY(-12px) rotateX(8deg) scale(1.1);
+            filter: drop-shadow(0 20px 40px rgba(255, 215, 0, 0.2));
+        }
+        
+        .steam {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .cup:hover .steam {
+            opacity: 1;
+            animation: luxury-steam 2.5s ease-in-out infinite;
+        }
+        
+        @keyframes luxury-steam {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-15px) scale(1.2); opacity: 0.5; }
+            100% { transform: translateY(-30px) scale(1.4); opacity: 0; }
+        }
+        
+        .foam-animation {
+            animation: luxury-foam 4s ease-in-out infinite;
+        }
+        
+        @keyframes luxury-foam {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.03); opacity: 1; }
+        }
+        
+        .liquid-fill {
+            animation: luxury-fill 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        @keyframes luxury-fill {
+            0% { height: 0%; opacity: 0; }
+            50% { opacity: 0.7; }
+            100% { height: var(--fill-height); opacity: 1; }
+        }
+        
+        .luxury-glow {
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3),
+                        0 0 60px rgba(255, 215, 0, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) rotateX(5deg) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 30px rgba(255, 215, 0, 0.2);
+        }
+        
+        .drink-card {
+            min-width: 160px;
+            animation: luxury-slideIn 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .drink-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .drink-card:hover::before {
+            left: 100%;
+        }
+        
+        @keyframes luxury-slideIn {
+            0% { opacity: 0; transform: translateY(30px) rotateX(-10deg); }
+            100% { opacity: 1; transform: translateY(0) rotateX(0deg); }
+        }
+        
+        .luxury-pulse {
+            animation: luxury-pulse 3s infinite;
+        }
+        
+        @keyframes luxury-pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+        
+        .filter-btn {
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(139, 69, 19, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .filter-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #FFD700, #B8860B);
+            color: #000;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .nav-btn:hover {
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .luxury-modal {
+            background: linear-gradient(145deg, rgba(20, 20, 20, 0.95), rgba(10, 10, 10, 0.95));
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8),
+                        0 0 100px rgba(255, 215, 0, 0.1);
+        }
+        
+        .luxury-badge {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(184, 134, 11, 0.9));
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .click-indicator {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            animation: luxury-bounce 2s infinite;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        }
+        
+        @keyframes luxury-bounce {
+            0%, 100% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.1) translateY(-2px); }
+        }
+        
+        .hint-text {
+            color: rgba(255, 215, 0, 0.8);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            animation: luxury-glow-text 3s ease-in-out infinite;
+        }
+        
+        @keyframes luxury-glow-text {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+        }
+    </style>
+</head>
+<body class="luxury-bg min-h-screen">
+    <!-- Header -->
+    <div class="container mx-auto px-4 py-6">
+        <div class="text-center mb-6">
+
+        <!-- Filters -->
+        <div class="flex flex-wrap justify-center gap-3 mb-8">
+            <button onclick="filterDrinks('all')" class="filter-btn active px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-white">
+                All
+            </button>
+            <button onclick="filterDrinks('milk')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-white">
+                Milk
+            </button>
+            <button onclick="filterDrinks('foam')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-white">
+                Foam
+            </button>
+            <button onclick="filterDrinks('cold')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-white">
+                Cold
+            </button>
+            <button onclick="filterDrinks('strong')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-white">
+                Strong
+            </button>
+        </div>
+
+        <!-- Carousel Container -->
+        <div class="relative">
+            <!-- Navigation Buttons -->
+            <button onclick="scrollCarousel(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 nav-btn rounded-full p-4">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <button onclick="scrollCarousel(1)" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 nav-btn rounded-full p-4">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </button>
+            
+            <!-- Drinks Carousel -->
+            <div id="drinks-carousel" class="overflow-hidden mx-8">
+                <div id="drinks-grid" class="flex transition-transform duration-500 ease-in-out gap-3">
+                    <!-- Drinks will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Click hint -->
+        <div class="text-center mt-6">
+            <p class="text-sm hint-text font-medium">
+                ✨ Click any cup for detailed info
+            </p>
+        </div>
+
+        <!-- Drink Detail Modal -->
+        <div id="drink-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 p-4" style="backdrop-filter: blur(10px);">
+            <div class="luxury-modal rounded-3xl p-8 max-w-md w-full transform transition-all duration-500 scale-95">
+                <div class="text-center">
+                    <div id="modal-cup" class="mb-6"></div>
+                    <h3 id="modal-title" class="text-3xl font-bold text-white mb-3"></h3>
+                    <p id="modal-description" class="text-gray-300 mb-8 text-lg"></p>
+                    
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div class="glass-card p-4 rounded-xl">
+                            <div class="font-semibold text-white mb-1">Volume</div>
+                            <div id="modal-volume" class="text-yellow-400 font-bold text-lg"></div>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl">
+                            <div class="font-semibold text-white mb-1">Intensity</div>
+                            <div id="modal-intensity" class="text-yellow-400 font-bold text-lg"></div>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl">
+                            <div class="font-semibold text-white mb-1">Foam Level</div>
+                            <div id="modal-foam" class="text-yellow-400 font-bold text-lg"></div>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl">
+                            <div class="font-semibold text-white mb-1">Milk %</div>
+                            <div id="modal-milk" class="text-yellow-400 font-bold text-lg"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <div class="font-semibold text-white mb-3 text-lg">Suggested Cup</div>
+                        <div id="modal-cup-type" class="text-yellow-400 font-medium text-lg"></div>
+                    </div>
+                </div>
+                
+                <button onclick="closeModal()" class="mt-10 w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-4 rounded-xl font-bold text-lg hover:from-yellow-300 hover:to-yellow-500 transition-all duration-300 transform hover:scale-105">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const drinks = [
+            {
+                name: "Espresso",
+                description: "Pure, concentrated coffee with rich crema",
+                volume: "30ml",
+                intensity: "Strong",
+                foam: "Low",
+                milk: "0%",
+                cupType: "Espresso demitasse",
+                category: ["strong"],
+                cupHeight: "60px",
+                liquidColor: "#3B2F2F",
+                foamHeight: "8px"
+            },
+            {
+                name: "2x Espresso",
+                description: "Double shot of pure espresso intensity",
+                volume: "60ml",
+                intensity: "Very Strong",
+                foam: "Low",
+                milk: "0%",
+                cupType: "Espresso cup",
+                category: ["strong"],
+                cupHeight: "65px",
+                liquidColor: "#3B2F2F",
+                foamHeight: "10px"
+            },
+            {
+                name: "Coffee",
+                description: "Classic black coffee, smooth and balanced",
+                volume: "120ml",
+                intensity: "Medium",
+                foam: "None",
+                milk: "0%",
+                cupType: "Coffee mug",
+                category: [],
+                cupHeight: "80px",
+                liquidColor: "#4A3728",
+                foamHeight: "0px"
+            },
+            {
+                name: "2x Coffee",
+                description: "Double strength coffee for extra energy",
+                volume: "120ml",
+                intensity: "Strong",
+                foam: "None",
+                milk: "0%",
+                cupType: "Coffee mug",
+                category: ["strong"],
+                cupHeight: "80px",
+                liquidColor: "#3B2F2F",
+                foamHeight: "0px"
+            },
+            {
+                name: "Americano",
+                description: "Espresso with hot water, smooth and light",
+                volume: "150ml",
+                intensity: "Medium",
+                foam: "None",
+                milk: "0%",
+                cupType: "Large coffee cup",
+                category: [],
+                cupHeight: "85px",
+                liquidColor: "#5D4E37",
+                foamHeight: "0px"
+            },
+            {
+                name: "Lungo",
+                description: "Long espresso extraction for milder taste",
+                volume: "110ml",
+                intensity: "Medium",
+                foam: "Low",
+                milk: "0%",
+                cupType: "Lungo cup",
+                category: [],
+                cupHeight: "75px",
+                liquidColor: "#4A3728",
+                foamHeight: "5px"
+            },
+            {
+                name: "Caffè Barista",
+                description: "Expertly crafted coffee with perfect balance",
+                volume: "140ml",
+                intensity: "Medium-Strong",
+                foam: "Medium",
+                milk: "20%",
+                cupType: "Barista cup",
+                category: ["milk"],
+                cupHeight: "80px",
+                liquidColor: "#6B4423",
+                foamHeight: "15px"
+            },
+            {
+                name: "Cortado",
+                description: "Equal parts espresso and warm milk",
+                volume: "90ml",
+                intensity: "Medium-Strong",
+                foam: "Low",
+                milk: "50%",
+                cupType: "Cortado glass",
+                category: ["milk"],
+                cupHeight: "70px",
+                liquidColor: "#8B6F47",
+                foamHeight: "8px"
+            },
+            {
+                name: "Flat White",
+                description: "Smooth espresso with microfoam milk",
+                volume: "160ml",
+                intensity: "Medium-Strong",
+                foam: "Low",
+                milk: "60%",
+                cupType: "Flat white cup",
+                category: ["milk"],
+                cupHeight: "75px",
+                liquidColor: "#A0845C",
+                foamHeight: "10px"
+            },
+            {
+                name: "Cappuccino",
+                description: "Perfect balance of espresso, milk, and foam",
+                volume: "180ml",
+                intensity: "Medium",
+                foam: "High",
+                milk: "60%",
+                cupType: "Cappuccino cup",
+                category: ["milk", "foam"],
+                cupHeight: "80px",
+                liquidColor: "#B8956D",
+                foamHeight: "25px"
+            },
+            {
+                name: "Cappuccino Extra Shot",
+                description: "Cappuccino with an extra espresso shot",
+                volume: "180ml",
+                intensity: "Strong",
+                foam: "High",
+                milk: "55%",
+                cupType: "Cappuccino cup",
+                category: ["milk", "foam", "strong"],
+                cupHeight: "80px",
+                liquidColor: "#A0845C",
+                foamHeight: "25px"
+            },
+            {
+                name: "Latte Macchiato",
+                description: "Layered milk with espresso mark",
+                volume: "300ml",
+                intensity: "Mild",
+                foam: "Medium",
+                milk: "75%",
+                cupType: "Tall latte glass",
+                category: ["milk"],
+                cupHeight: "100px",
+                liquidColor: "#D4C4A8",
+                foamHeight: "20px"
+            },
+            {
+                name: "Latte Macchiato Extra Shot",
+                description: "Latte macchiato with extra espresso intensity",
+                volume: "300ml",
+                intensity: "Medium",
+                foam: "Medium",
+                milk: "70%",
+                cupType: "Tall latte glass",
+                category: ["milk", "strong"],
+                cupHeight: "100px",
+                liquidColor: "#C4B494",
+                foamHeight: "20px"
+            },
+            {
+                name: "Macchiato",
+                description: "Espresso marked with a dollop of foam",
+                volume: "40ml",
+                intensity: "Strong",
+                foam: "Medium",
+                milk: "10%",
+                cupType: "Espresso cup",
+                category: ["strong", "foam"],
+                cupHeight: "65px",
+                liquidColor: "#4A3728",
+                foamHeight: "15px"
+            },
+            {
+                name: "Milk Foam",
+                description: "Pure, creamy milk foam",
+                volume: "150ml",
+                intensity: "None",
+                foam: "Very High",
+                milk: "100%",
+                cupType: "Foam cup",
+                category: ["milk", "foam"],
+                cupHeight: "85px",
+                liquidColor: "#FFFFFF",
+                foamHeight: "40px"
+            },
+            {
+                name: "Hot Milk",
+                description: "Perfectly heated milk",
+                volume: "200ml",
+                intensity: "None",
+                foam: "None",
+                milk: "100%",
+                cupType: "Milk mug",
+                category: ["milk"],
+                cupHeight: "85px",
+                liquidColor: "#FFFFFF",
+                foamHeight: "0px"
+            },
+            {
+                name: "Hot Water (Green Tea)",
+                description: "Optimal temperature for green tea",
+                volume: "200ml",
+                intensity: "None",
+                foam: "None",
+                milk: "0%",
+                cupType: "Tea cup",
+                category: [],
+                cupHeight: "75px",
+                liquidColor: "#E6F3FF",
+                foamHeight: "0px"
+            },
+            {
+                name: "Hot Water (Boiling)",
+                description: "Boiling water for various uses",
+                volume: "200ml",
+                intensity: "None",
+                foam: "None",
+                milk: "0%",
+                cupType: "Heat-resistant cup",
+                category: [],
+                cupHeight: "75px",
+                liquidColor: "#F0F8FF",
+                foamHeight: "0px"
+            },
+            {
+                name: "Cold Brew Espresso",
+                description: "Smooth cold espresso over ice",
+                volume: "90ml",
+                intensity: "Medium-Strong",
+                foam: "None",
+                milk: "0%",
+                cupType: "Cold brew glass",
+                category: ["cold", "strong"],
+                cupHeight: "85px",
+                liquidColor: "#4A3728",
+                foamHeight: "0px",
+                iced: true
+            },
+            {
+                name: "Cold Brew Latte",
+                description: "Refreshing iced latte with cold milk",
+                volume: "250ml",
+                intensity: "Medium",
+                foam: "None",
+                milk: "70%",
+                cupType: "Tall iced glass",
+                category: ["cold", "milk"],
+                cupHeight: "95px",
+                liquidColor: "#C4B494",
+                foamHeight: "0px",
+                iced: true
+            },
+            {
+                name: "Cold Brew Cappuccino",
+                description: "Iced cappuccino with cold foam",
+                volume: "200ml",
+                intensity: "Medium",
+                foam: "High",
+                milk: "60%",
+                cupType: "Iced cappuccino glass",
+                category: ["cold", "milk", "foam"],
+                cupHeight: "90px",
+                liquidColor: "#B8956D",
+                foamHeight: "20px",
+                iced: true
+            },
+            {
+                name: "Cold Brew Flat White",
+                description: "Smooth iced flat white",
+                volume: "180ml",
+                intensity: "Medium-Strong",
+                foam: "Low",
+                milk: "60%",
+                cupType: "Iced flat white glass",
+                category: ["cold", "milk"],
+                cupHeight: "85px",
+                liquidColor: "#A0845C",
+                foamHeight: "8px",
+                iced: true
+            },
+            {
+                name: "Cold Brew",
+                description: "Pure cold brew coffee concentrate",
+                volume: "120ml",
+                intensity: "Strong",
+                foam: "None",
+                milk: "0%",
+                cupType: "Cold brew glass",
+                category: ["cold", "strong"],
+                cupHeight: "80px",
+                liquidColor: "#3B2F2F",
+                foamHeight: "0px",
+                iced: true
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        function createCupSVG(drink) {
+            const isIced = drink.iced || false;
+            const iceElements = isIced ? `
+                <ellipse cx="25" cy="18" rx="2" ry="1.5" fill="#E6F7FF" opacity="0.8"/>
+                <ellipse cx="32" cy="22" rx="1.5" ry="1" fill="#E6F7FF" opacity="0.8"/>
+                <ellipse cx="18" cy="25" rx="1.5" ry="1" fill="#E6F7FF" opacity="0.8"/>
+            ` : '';
+            
+            const steamElements = !isIced ? `
+                <g class="steam">
+                    <path d="M20 8 Q21 5 20 2" stroke="#E5E7EB" stroke-width="0.8" fill="none" opacity="0.6"/>
+                    <path d="M27 9 Q28 6 27 3" stroke="#E5E7EB" stroke-width="0.8" fill="none" opacity="0.6"/>
+                    <path d="M34 8 Q35 5 34 2" stroke="#E5E7EB" stroke-width="0.8" fill="none" opacity="0.6"/>
+                </g>
+            ` : '';
+
+            const cupHeight = Math.max(40, parseInt(drink.cupHeight) * 0.6);
+
+            return `
+                <svg width="50" height="${cupHeight}" viewBox="0 0 50 ${cupHeight}" class="cup pulse-ring">
+                    ${steamElements}
+                    <!-- Cup body -->
+                    <path d="M10 12 L10 ${cupHeight - 6} Q10 ${cupHeight - 3} 13 ${cupHeight - 3} L37 ${cupHeight - 3} Q40 ${cupHeight - 3} 40 ${cupHeight - 6} L40 12 Q40 9 37 9 L13 9 Q10 9 10 12 Z" 
+                          fill="rgba(255,255,255,0.9)" 
+                          stroke="#D1D5DB" 
+                          stroke-width="0.8"/>
+                    
+                    <!-- Handle -->
+                    <path d="M40 16 Q46 16 46 22 Q46 28 40 28" 
+                          fill="none" 
+                          stroke="#D1D5DB" 
+                          stroke-width="1.5"/>
+                    
+                    <!-- Liquid -->
+                    <path d="M11.5 13.5 L11.5 ${cupHeight - 7.5} Q11.5 ${cupHeight - 5} 14 ${cupHeight - 5} L36 ${cupHeight - 5} Q38.5 ${cupHeight - 5} 38.5 ${cupHeight - 7.5} L38.5 13.5 Z" 
+                          fill="${drink.liquidColor}" 
+                          class="liquid-fill" 
+                          style="--fill-height: ${100 - (parseInt(drink.foamHeight) / parseInt(drink.cupHeight)) * 100}%"/>
+                    
+                    ${drink.foamHeight !== "0px" ? `
+                    <!-- Foam -->
+                    <ellipse cx="25" cy="13.5" rx="14" ry="${Math.max(2, parseInt(drink.foamHeight)/3)}" 
+                             fill="#FFFBF0" 
+                             class="foam-animation"/>
+                    <ellipse cx="22" cy="12" rx="2" ry="1.2" fill="#FFFFFF" opacity="0.8"/>
+                    <ellipse cx="28" cy="12.5" rx="1.5" ry="1" fill="#FFFFFF" opacity="0.8"/>
+                    <ellipse cx="31" cy="11.5" rx="1.8" ry="1.2" fill="#FFFFFF" opacity="0.8"/>
+                    ` : ''}
+                    
+                    ${iceElements}
+                    
+                    <!-- Cup rim highlight -->
+                    <ellipse cx="25" cy="10.5" rx="15" ry="2" fill="rgba(255,255,255,0.6)"/>
+                </svg>
+            `;
+        }
+
+        let currentIndex = 0;
+        let filteredDrinks = drinks;
+
+        function renderDrinks() {
+            const grid = document.getElementById('drinks-grid');
+            filteredDrinks = currentFilter === 'all' 
+                ? drinks 
+                : drinks.filter(drink => drink.category.includes(currentFilter));
+
+            // Create two rows
+            const firstRow = filteredDrinks.slice(0, Math.ceil(filteredDrinks.length / 2));
+            const secondRow = filteredDrinks.slice(Math.ceil(filteredDrinks.length / 2));
+
+            grid.innerHTML = `
+                <div class="flex flex-col gap-4">
+                    <div class="flex gap-4">
+                        ${firstRow.map(drink => createDrinkCard(drink)).join('')}
+                    </div>
+                    <div class="flex gap-4">
+                        ${secondRow.map(drink => createDrinkCard(drink)).join('')}
+                    </div>
+                </div>
+            `;
+            
+            currentIndex = 0;
+            updateCarouselPosition();
+        }
+
+        function createDrinkCard(drink) {
+            return `
+                <div class="drink-card glass-card rounded-2xl p-4 card-hover cursor-pointer luxury-glow relative luxury-pulse" 
+                     onclick="showDrinkDetail('${drink.name}')">
+                    <div class="absolute top-2 right-2 text-xs click-indicator text-black rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                        !
+                    </div>
+                    <div class="cup-container flex justify-center mb-3">
+                        ${createCupSVG(drink)}
+                    </div>
+                    <h3 class="text-sm font-bold text-white text-center mb-2">${drink.name}</h3>
+                    <div class="text-center">
+                        <span class="luxury-badge text-black px-3 py-1 rounded-full text-xs font-bold">
+                            ${drink.volume}
+                        </span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function scrollCarousel(direction) {
+            const maxIndex = Math.max(0, Math.ceil(filteredDrinks.length / 2) - 4);
+            currentIndex = Math.max(0, Math.min(maxIndex, currentIndex + direction));
+            updateCarouselPosition();
+        }
+
+        function updateCarouselPosition() {
+            const grid = document.getElementById('drinks-grid');
+            const cardWidth = 175; // 160px + 15px gap
+            const offset = -currentIndex * cardWidth;
+            grid.style.transform = `translateX(${offset}px)`;
+        }
+
+        function filterDrinks(category) {
+            currentFilter = category;
+            
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            renderDrinks();
+        }
+
+        function showDrinkDetail(drinkName) {
+            const drink = drinks.find(d => d.name === drinkName);
+            if (!drink) return;
+
+            document.getElementById('modal-title').textContent = drink.name;
+            document.getElementById('modal-description').textContent = drink.description;
+            document.getElementById('modal-volume').textContent = drink.volume;
+            document.getElementById('modal-intensity').textContent = drink.intensity;
+            document.getElementById('modal-foam').textContent = drink.foam;
+            document.getElementById('modal-milk').textContent = drink.milk;
+            document.getElementById('modal-cup-type').textContent = drink.cupType;
+            document.getElementById('modal-cup').innerHTML = createCupSVG(drink);
+
+            const modal = document.getElementById('drink-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.querySelector('.bg-white, .bg-gray-800').classList.remove('scale-95');
+                modal.querySelector('.bg-white, .bg-gray-800').classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('drink-modal');
+            modal.querySelector('.bg-white, .bg-gray-800').classList.remove('scale-100');
+            modal.querySelector('.bg-white, .bg-gray-800').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+
+
+        // Close modal when clicking outside
+        document.getElementById('drink-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Initialize
+        renderDrinks();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95f36cb565b474e8',t:'MTc1MjUyMTMyMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
