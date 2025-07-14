@@ -3,687 +3,589 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jura Z10 Coffee Possibilities</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Jura Machine Drink Profiles</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
             min-height: 100vh;
+            color: #ffffff;
             overflow-x: hidden;
         }
-        
-        .luxury-bg {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding: 24px 32px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .title-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .machine-selector {
             position: relative;
         }
-        
-        .luxury-bg::before {
+
+        .machine-select {
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+
+        .machine-select:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(103, 126, 234, 0.3);
+        }
+
+        .filters {
+            display: flex;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 6px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(103, 126, 234, 0.3);
+        }
+
+        .drinks-container {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .drinks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 16px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .drink-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .drink-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(139, 69, 19, 0.05) 0%, transparent 50%);
-            pointer-events: none;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        
-        .glass-morphism {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-        
-        .glass-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        }
-        
-        .cup {
-            transition: transform 0.2s ease;
-        }
-        
-        .cup:hover {
-            transform: translateY(-4px) scale(1.05);
-        }
-        
-        .luxury-glow {
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3),
-                        0 0 60px rgba(255, 215, 0, 0.1),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        }
-        
-        .card-hover {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        
-        .card-hover:hover {
+
+        .drink-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(103, 126, 234, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
-        
-        .drink-card {
-            min-width: 160px;
+
+        .drink-card:hover::before {
+            opacity: 1;
         }
-        
-        .filter-btn {
-            transition: background 0.2s ease;
+
+        .drink-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
         }
-        
-        .filter-btn.active {
-            background: linear-gradient(135deg, #FFD700, #B8860B);
-            color: #000;
+
+        .drink-info {
+            flex: 1;
         }
-        
-        .nav-btn {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            transition: background 0.2s ease;
+
+        .drink-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #ffffff;
         }
-        
-        .nav-btn:hover {
-            background: rgba(255, 215, 0, 0.2);
+
+        .drink-volume {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
         }
-        
-        .luxury-modal {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95));
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2),
-                        0 0 100px rgba(255, 215, 0, 0.1);
+
+        .drink-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #ffffff;
+            box-shadow: 0 8px 16px rgba(103, 126, 234, 0.3);
         }
-        
-        .luxury-badge {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(184, 134, 11, 0.9));
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-            backdrop-filter: blur(10px);
+
+        .drink-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
         }
-        
-        .click-indicator {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
+
+        .strength-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        
-        .hint-text {
-            color: rgba(139, 69, 19, 0.8);
+
+        .strength-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .strength-beans {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+        }
+
+        .bean {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .bean.filled {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border-color: #f59e0b;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+        }
+
+        .foam-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .foam-icon {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .foam-text {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+        }
+
+        .cold-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .expanded-details {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .drink-card.expanded .expanded-details {
+            opacity: 1;
+            max-height: 120px;
+        }
+
+        .tasting-notes {
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Scrollbar styling */
+        .drinks-grid::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .drinks-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .drinks-grid::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+        }
+
+        .drinks-grid::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                align-items: stretch;
+            }
+
+            .controls {
+                justify-content: space-between;
+            }
+
+            .drinks-grid {
+                grid-template-columns: 1fr;
+                max-height: 500px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 16px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .drinks-container {
+                padding: 16px;
+            }
+
+            .filters {
+                flex-wrap: wrap;
+            }
         }
     </style>
 </head>
-<body class="luxury-bg min-h-screen">
-    <!-- Header -->
-    <div class="container mx-auto px-4 py-6">
-        <div class="text-center mb-6">
-
-        <!-- Filters -->
-        <div class="flex flex-wrap justify-center gap-3 mb-8">
-            <button onclick="filterDrinks('all')" class="filter-btn active px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-gray-700">
-                All
-            </button>
-            <button onclick="filterDrinks('milk')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-gray-700">
-                Milk
-            </button>
-            <button onclick="filterDrinks('foam')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-gray-700">
-                Foam
-            </button>
-            <button onclick="filterDrinks('cold')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-gray-700">
-                Cold
-            </button>
-            <button onclick="filterDrinks('strong')" class="filter-btn px-6 py-2.5 text-sm font-medium rounded-full glass-morphism text-gray-700">
-                Strong
-            </button>
-        </div>
-
-        <!-- Carousel Container -->
-        <div class="relative">
-            <!-- Navigation Buttons -->
-            <button onclick="scrollCarousel(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 nav-btn rounded-full p-4">
-                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-            </button>
-            <button onclick="scrollCarousel(1)" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 nav-btn rounded-full p-4">
-                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </button>
-            
-            <!-- Drinks Carousel -->
-            <div id="drinks-carousel" class="overflow-hidden mx-8">
-                <div id="drinks-grid" class="flex transition-transform duration-500 ease-in-out gap-3">
-                    <!-- Drinks will be populated by JavaScript -->
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title-section">
+                <div>
+                    <div class="title">Jura Drink Profiles</div>
+                    <div class="subtitle">Premium Coffee Machine Specialties</div>
+                </div>
+            </div>
+            <div class="controls">
+                <div class="machine-selector">
+                    <select class="machine-select" id="machineSelect">
+                        <option value="Z10">Z10 (32 specialties)</option>
+                        <option value="J8">J8 / J8 Twin (31 specialties)</option>
+                        <option value="S8">S8 (15 specialties)</option>
+                        <option value="ENA">ENA 4/8 (9 specialties)</option>
+                        <option value="E4">E4 (6 basic drinks)</option>
+                    </select>
+                </div>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="hot">Hot</button>
+                    <button class="filter-btn" data-filter="cold">Cold</button>
+                    <button class="filter-btn" data-filter="milk">Milk</button>
                 </div>
             </div>
         </div>
-        
-        <!-- Click hint -->
-        <div class="text-center mt-6">
-            <p class="text-sm hint-text font-medium">
-                ✨ Click any cup for detailed info
-            </p>
+
+        <div class="drinks-container">
+            <div class="drinks-grid" id="drinksGrid">
+                <!-- Drinks will be populated by JavaScript -->
+            </div>
         </div>
 
-        <!-- Drink Detail Modal -->
-        <div id="drink-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 p-4" style="backdrop-filter: blur(10px);">
-            <div class="luxury-modal rounded-3xl p-8 max-w-md w-full transform transition-all duration-500 scale-95">
-                <div class="text-center">
-                    <div id="modal-cup" class="mb-6"></div>
-                    <h3 id="modal-title" class="text-3xl font-bold text-gray-800 mb-3"></h3>
-                    <p id="modal-description" class="text-gray-600 mb-8 text-lg"></p>
-                    
-                    <div class="grid grid-cols-2 gap-4 text-sm">
-                        <div class="glass-card p-4 rounded-xl">
-                            <div class="font-semibold text-gray-800 mb-1">Volume</div>
-                            <div id="modal-volume" class="text-amber-600 font-bold text-lg"></div>
-                        </div>
-                        <div class="glass-card p-4 rounded-xl">
-                            <div class="font-semibold text-gray-800 mb-1">Intensity</div>
-                            <div id="modal-intensity" class="text-amber-600 font-bold text-lg"></div>
-                        </div>
-                        <div class="glass-card p-4 rounded-xl">
-                            <div class="font-semibold text-gray-800 mb-1">Foam Level</div>
-                            <div id="modal-foam" class="text-amber-600 font-bold text-lg"></div>
-                        </div>
-                        <div class="glass-card p-4 rounded-xl">
-                            <div class="font-semibold text-gray-800 mb-1">Milk %</div>
-                            <div id="modal-milk" class="text-amber-600 font-bold text-lg"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8">
-                        <div class="font-semibold text-gray-800 mb-3 text-lg">Suggested Cup</div>
-                        <div id="modal-cup-type" class="text-amber-600 font-medium text-lg"></div>
-                    </div>
-                </div>
-                
-                <button onclick="closeModal()" class="mt-10 w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-4 rounded-xl font-bold text-lg hover:from-yellow-300 hover:to-yellow-500 transition-all duration-300 transform hover:scale-105">
-                    Close
-                </button>
-            </div>
+        <div class="footer">
+            <i class="fas fa-info-circle"></i> Profiles based on Jura default settings — customizable in machine Settings
         </div>
     </div>
 
     <script>
-        const drinks = [
-            {
-                name: "Espresso",
-                description: "Pure, concentrated coffee with rich crema",
-                volume: "30ml",
-                intensity: "Strong",
-                foam: "Low",
-                milk: "0%",
-                cupType: "Espresso demitasse",
-                category: ["strong"],
-                cupHeight: "60px",
-                liquidColor: "#3B2F2F",
-                foamHeight: "8px"
-            },
-            {
-                name: "2x Espresso",
-                description: "Double shot of pure espresso intensity",
-                volume: "60ml",
-                intensity: "Very Strong",
-                foam: "Low",
-                milk: "0%",
-                cupType: "Espresso cup",
-                category: ["strong"],
-                cupHeight: "65px",
-                liquidColor: "#3B2F2F",
-                foamHeight: "10px"
-            },
-            {
-                name: "Coffee",
-                description: "Classic black coffee, smooth and balanced",
-                volume: "120ml",
-                intensity: "Medium",
-                foam: "None",
-                milk: "0%",
-                cupType: "Coffee mug",
-                category: [],
-                cupHeight: "80px",
-                liquidColor: "#4A3728",
-                foamHeight: "0px"
-            },
-            {
-                name: "2x Coffee",
-                description: "Double strength coffee for extra energy",
-                volume: "120ml",
-                intensity: "Strong",
-                foam: "None",
-                milk: "0%",
-                cupType: "Coffee mug",
-                category: ["strong"],
-                cupHeight: "80px",
-                liquidColor: "#3B2F2F",
-                foamHeight: "0px"
-            },
-            {
-                name: "Americano",
-                description: "Espresso with hot water, smooth and light",
-                volume: "150ml",
-                intensity: "Medium",
-                foam: "None",
-                milk: "0%",
-                cupType: "Large coffee cup",
-                category: [],
-                cupHeight: "85px",
-                liquidColor: "#5D4E37",
-                foamHeight: "0px"
-            },
-            {
-                name: "Lungo",
-                description: "Long espresso extraction for milder taste",
-                volume: "110ml",
-                intensity: "Medium",
-                foam: "Low",
-                milk: "0%",
-                cupType: "Lungo cup",
-                category: [],
-                cupHeight: "75px",
-                liquidColor: "#4A3728",
-                foamHeight: "5px"
-            },
-            {
-                name: "Caffè Barista",
-                description: "Expertly crafted coffee with perfect balance",
-                volume: "140ml",
-                intensity: "Medium-Strong",
-                foam: "Medium",
-                milk: "20%",
-                cupType: "Barista cup",
-                category: ["milk"],
-                cupHeight: "80px",
-                liquidColor: "#6B4423",
-                foamHeight: "15px"
-            },
-            {
-                name: "Cortado",
-                description: "Equal parts espresso and warm milk",
-                volume: "90ml",
-                intensity: "Medium-Strong",
-                foam: "Low",
-                milk: "50%",
-                cupType: "Cortado glass",
-                category: ["milk"],
-                cupHeight: "70px",
-                liquidColor: "#8B6F47",
-                foamHeight: "8px"
-            },
-            {
-                name: "Flat White",
-                description: "Smooth espresso with microfoam milk",
-                volume: "160ml",
-                intensity: "Medium-Strong",
-                foam: "Low",
-                milk: "60%",
-                cupType: "Flat white cup",
-                category: ["milk"],
-                cupHeight: "75px",
-                liquidColor: "#A0845C",
-                foamHeight: "10px"
-            },
-            {
-                name: "Cappuccino",
-                description: "Perfect balance of espresso, milk, and foam",
-                volume: "180ml",
-                intensity: "Medium",
-                foam: "High",
-                milk: "60%",
-                cupType: "Cappuccino cup",
-                category: ["milk", "foam"],
-                cupHeight: "80px",
-                liquidColor: "#B8956D",
-                foamHeight: "25px"
-            },
-            {
-                name: "Cappuccino Extra Shot",
-                description: "Cappuccino with an extra espresso shot",
-                volume: "180ml",
-                intensity: "Strong",
-                foam: "High",
-                milk: "55%",
-                cupType: "Cappuccino cup",
-                category: ["milk", "foam", "strong"],
-                cupHeight: "80px",
-                liquidColor: "#A0845C",
-                foamHeight: "25px"
-            },
-            {
-                name: "Latte Macchiato",
-                description: "Layered milk with espresso mark",
-                volume: "300ml",
-                intensity: "Mild",
-                foam: "Medium",
-                milk: "75%",
-                cupType: "Tall latte glass",
-                category: ["milk"],
-                cupHeight: "100px",
-                liquidColor: "#D4C4A8",
-                foamHeight: "20px"
-            },
-            {
-                name: "Latte Macchiato Extra Shot",
-                description: "Latte macchiato with extra espresso intensity",
-                volume: "300ml",
-                intensity: "Medium",
-                foam: "Medium",
-                milk: "70%",
-                cupType: "Tall latte glass",
-                category: ["milk", "strong"],
-                cupHeight: "100px",
-                liquidColor: "#C4B494",
-                foamHeight: "20px"
-            },
-            {
-                name: "Macchiato",
-                description: "Espresso marked with a dollop of foam",
-                volume: "40ml",
-                intensity: "Strong",
-                foam: "Medium",
-                milk: "10%",
-                cupType: "Espresso cup",
-                category: ["strong", "foam"],
-                cupHeight: "65px",
-                liquidColor: "#4A3728",
-                foamHeight: "15px"
-            },
-            {
-                name: "Milk Foam",
-                description: "Pure, creamy milk foam",
-                volume: "150ml",
-                intensity: "None",
-                foam: "Very High",
-                milk: "100%",
-                cupType: "Foam cup",
-                category: ["milk", "foam"],
-                cupHeight: "85px",
-                liquidColor: "#FFFFFF",
-                foamHeight: "40px"
-            },
-            {
-                name: "Hot Milk",
-                description: "Perfectly heated milk",
-                volume: "200ml",
-                intensity: "None",
-                foam: "None",
-                milk: "100%",
-                cupType: "Milk mug",
-                category: ["milk"],
-                cupHeight: "85px",
-                liquidColor: "#FFFFFF",
-                foamHeight: "0px"
-            },
-            {
-                name: "Hot Water (Green Tea)",
-                description: "Optimal temperature for green tea",
-                volume: "200ml",
-                intensity: "None",
-                foam: "None",
-                milk: "0%",
-                cupType: "Tea cup",
-                category: [],
-                cupHeight: "75px",
-                liquidColor: "#E6F3FF",
-                foamHeight: "0px"
-            },
-            {
-                name: "Hot Water (Boiling)",
-                description: "Boiling water for various uses",
-                volume: "200ml",
-                intensity: "None",
-                foam: "None",
-                milk: "0%",
-                cupType: "Heat-resistant cup",
-                category: [],
-                cupHeight: "75px",
-                liquidColor: "#F0F8FF",
-                foamHeight: "0px"
-            },
-            {
-                name: "Cold Brew Espresso",
-                description: "Smooth cold espresso over ice",
-                volume: "90ml",
-                intensity: "Medium-Strong",
-                foam: "None",
-                milk: "0%",
-                cupType: "Cold brew glass",
-                category: ["cold", "strong"],
-                cupHeight: "85px",
-                liquidColor: "#4A3728",
-                foamHeight: "0px",
-                iced: true
-            },
-            {
-                name: "Cold Brew Latte",
-                description: "Refreshing iced latte with cold milk",
-                volume: "250ml",
-                intensity: "Medium",
-                foam: "None",
-                milk: "70%",
-                cupType: "Tall iced glass",
-                category: ["cold", "milk"],
-                cupHeight: "95px",
-                liquidColor: "#C4B494",
-                foamHeight: "0px",
-                iced: true
-            },
-            {
-                name: "Cold Brew Cappuccino",
-                description: "Iced cappuccino with cold foam",
-                volume: "200ml",
-                intensity: "Medium",
-                foam: "High",
-                milk: "60%",
-                cupType: "Iced cappuccino glass",
-                category: ["cold", "milk", "foam"],
-                cupHeight: "90px",
-                liquidColor: "#B8956D",
-                foamHeight: "20px",
-                iced: true
-            },
-            {
-                name: "Cold Brew Flat White",
-                description: "Smooth iced flat white",
-                volume: "180ml",
-                intensity: "Medium-Strong",
-                foam: "Low",
-                milk: "60%",
-                cupType: "Iced flat white glass",
-                category: ["cold", "milk"],
-                cupHeight: "85px",
-                liquidColor: "#A0845C",
-                foamHeight: "8px",
-                iced: true
-            },
-            {
-                name: "Cold Brew",
-                description: "Pure cold brew coffee concentrate",
-                volume: "120ml",
-                intensity: "Strong",
-                foam: "None",
-                milk: "0%",
-                cupType: "Cold brew glass",
-                category: ["cold", "strong"],
-                cupHeight: "80px",
-                liquidColor: "#3B2F2F",
-                foamHeight: "0px",
-                iced: true
-            }
-        ];
+        const drinkData = {
+            Z10: [
+                { name: "Espresso", volume: "1.5-2.5 oz", strength: 5, foam: "none", cold: false, icon: "fas fa-coffee", notes: "Rich, intense shot with golden crema. Perfect base for milk drinks." },
+                { name: "2× Espresso", volume: "3-5 oz", strength: 5, foam: "none", cold: false, icon: "fas fa-coffee", notes: "Double shot for maximum intensity and caffeine kick." },
+                { name: "Cold Brew Espresso", volume: "2 oz", strength: 3, foam: "none", cold: true, icon: "fas fa-snowflake", notes: "Smooth, less acidic cold extraction with concentrated flavor." },
+                { name: "Americano", volume: "7.5 oz", strength: 4, foam: "none", cold: false, icon: "fas fa-mug-hot", notes: "Espresso lengthened with hot water, similar to drip coffee." },
+                { name: "Coffee", volume: "4-6 oz", strength: 3, foam: "none", cold: false, icon: "fas fa-coffee", notes: "Classic medium-strength coffee, perfect for everyday drinking." },
+                { name: "Cold Brew Coffee", volume: "4-6 oz", strength: 3, foam: "none", cold: true, icon: "fas fa-glass-water", notes: "Refreshing cold coffee with smooth, mellow flavor profile." },
+                { name: "Jug of Coffee", volume: "80 oz", strength: 3, foam: "none", cold: false, icon: "fas fa-coffee-pot", notes: "Large batch brewing for entertaining or office use." },
+                { name: "Macchiato", volume: "2 oz", strength: 5, foam: "light", cold: false, icon: "fas fa-wine-glass", notes: "Espresso 'marked' with a dollop of steamed milk foam." },
+                { name: "Cold Brew Macchiato", volume: "2 oz", strength: 3, foam: "light", cold: true, icon: "fas fa-cocktail", notes: "Cold espresso topped with cool milk foam for contrast." },
+                { name: "Cortado", volume: "4 oz", strength: 5, foam: "light", cold: false, icon: "fas fa-wine-glass-alt", notes: "Spanish-style equal parts espresso and warm milk." },
+                { name: "Cold Brew Cortado", volume: "4 oz", strength: 3, foam: "light", cold: true, icon: "fas fa-glass-martini", notes: "Refreshing cold version of the classic Spanish drink." },
+                { name: "Caffè Latte", volume: "8 oz", strength: 3, foam: "light", cold: false, icon: "fas fa-mug-hot", notes: "Smooth espresso with steamed milk and light foam layer." },
+                { name: "Cold Brew Caffè Latte", volume: "8 oz", strength: 3, foam: "light", cold: true, icon: "fas fa-glass-water", notes: "Iced latte with cold brew base and chilled milk." },
+                { name: "Flat White", volume: "6 oz", strength: 4, foam: "micro", cold: false, icon: "fas fa-coffee", notes: "Australian-style coffee with microfoam and strong espresso." },
+                { name: "Cold Brew Flat White", volume: "6 oz", strength: 3, foam: "micro", cold: true, icon: "fas fa-snowflake", notes: "Cold version with silky microfoam texture." },
+                { name: "Cappuccino", volume: "6 oz", strength: 4, foam: "thick", cold: false, icon: "fas fa-coffee", notes: "Classic Italian coffee with equal parts espresso, milk, and foam." },
+                { name: "Cold Brew Cappuccino", volume: "6 oz", strength: 3, foam: "thick", cold: true, icon: "fas fa-glass-water", notes: "Refreshing cold cappuccino with thick foam topping." },
+                { name: "Latte Macchiato", volume: "10 oz", strength: 3, foam: "layered", cold: false, icon: "fas fa-wine-glass", notes: "Layered drink with steamed milk 'marked' by espresso." },
+                { name: "Cold Brew Latte Macchiato", volume: "10 oz", strength: 3, foam: "layered", cold: true, icon: "fas fa-cocktail", notes: "Beautiful layered cold drink with distinct coffee and milk layers." },
+                { name: "Portion Milk", volume: "4 oz", strength: 0, foam: "none", cold: false, icon: "fas fa-glass-water", notes: "Steamed milk for custom drink preparation." },
+                { name: "Portion Milk Foam", volume: "2 oz", strength: 0, foam: "thick", cold: false, icon: "fas fa-cloud", notes: "Rich milk foam for topping drinks or latte art." },
+                { name: "Hot Water", volume: "8 oz", strength: 0, foam: "none", cold: false, icon: "fas fa-tint", notes: "Hot water for tea, Americanos, or cleaning." }
+            ],
+            J8: [
+                { name: "Espresso", volume: "1.5-2.5 oz", strength: 5, foam: "none", cold: false, icon: "fas fa-coffee", notes: "Rich, intense shot with golden crema." },
+                { name: "2× Espresso", volume: "3-5 oz", strength: 5, foam: "none", cold: false, icon: "fas fa-coffee", notes: "Double shot for maximum intensity." },
+                { name: "Cold Brew Espresso", volume: "2 oz", strength: 3, foam: "none", cold: true, icon: "fas fa-snowflake", notes: "Smooth cold extraction with concentrated flavor." },
+                { name: "Americano", volume: "7.5 oz", strength: 4, foam: "none", cold: false, icon: "fas fa-mug-hot", notes: "Espresso lengthened with hot water." },
+                { name: "Coffee", volume: "4-6 oz", strength: 3, foam: "none", cold: false, icon: "fas fa-coffee", notes: "Classic medium-strength coffee." },
+                { name: "Cold Brew Coffee", volume: "4-6 oz", strength: 3, foam: "none", cold: true, icon: "fas fa-glass-water", notes: "Refreshing cold coffee with smooth flavor." },
+                { name: "Macchiato", volume: "2 oz", strength: 5, foam: "light", cold: false, icon: "fas fa-wine-glass", notes: "Espresso marked with milk foam." },
+                { name: "Cold Brew Macchiato", volume: "2 oz", strength: 3, foam: "light", cold: true, icon: "fas fa-cocktail", notes: "Cold espresso with cool milk foam." },
+                { name: "Cortado", volume: "4 oz", strength: 5, foam: "light", cold: false, icon: "fas fa-wine-glass-alt", notes: "Equal parts espresso and warm milk." },
+                { name: "Caffè Latte", volume: "8 oz", strength: 3, foam: "light", cold: false, icon: "fas fa-mug-hot", notes: "Smooth espresso with steamed milk." },
+                { name: "Flat White", volume: "6 oz", strength: 4, foam: "micro", cold: false, icon: "fas fa-coffee", notes: "Strong espresso with microfoam." },
+                { name: "Cappuccino", volume: "6 oz", strength: 4, foam: "thick", cold: false, icon: "fas fa-coffee", notes: "Classic Italian coffee with thick foam." },
+                { name: "Latte Macchiato", volume: "10 oz", strength: 3, foam: "layered", cold: false, icon: "fas fa-wine-glass", notes: "Layered milk drink marked with espresso." },
+                { name: "Hot Water", volume: "8 oz", strength: 0, foam: "none", cold: false, icon: "fas fa-tint", notes: "Hot water for tea or custom drinks." }
+            ],
+            S8: [
+                { name: "Espresso", volume: "1.5-2.5 oz", strength: 5, foam: "none", cold: false, icon: "fas fa-coffee", notes: "Rich, intense espresso shot." },
+                { name: "Coffee", volume: "4-6 oz", strength: 3, foam: "none", cold: false, icon: "fas fa-coffee", notes: "Classic medium-strength coffee." },
+                { name: "Americano", volume: "7.5 oz", strength: 4, foam: "none", cold: false, icon: "fas fa-mug-hot", notes: "Espresso with hot water." },
+                { name: "Macchiato", volume: "2 oz", strength: 5, foam: "light", cold: false, icon: "fas fa-wine-glass", notes: "Espresso with milk foam." },
+                { name: "Caffè Latte", volume: "8 oz", strength: 3, foam: "light", cold: false, icon: "fas fa-mug-hot", notes: "Espresso with steamed milk." },
+                { name: "Flat White", volume: "6 oz", strength: 4, foam: "micro", cold: false, icon: "fas fa-coffee", notes: "Strong coffee with microfoam." },
+                { name: "Cappuccino", volume: "6 oz", strength: 4, foam: "thick", cold: false, icon: "fas fa-coffee", notes: "Classic cappuccino with thick foam." },
+                { name: "Latte Macchiato", volume: "10 oz", strength: 3, foam: "layered", cold: false, icon: "fas fa-wine-glass", notes: "Layered milk and espresso drink." },
+                { name: "Hot Water", volume: "8 oz", strength: 0, foam: "none", cold: false, icon: "fas fa-tint", notes: "Hot water for tea preparation." }
+            ],
+            ENA: [
+                { name: "Espresso", volume: "1.5-2.5 oz", strength: 5, foam: "none", cold: false, icon: "fas fa-coffee", notes: "Classic espresso shot." },
+                { name: "Ristretto", volume: "1 oz", strength: 5, foam: "none", cold: false, icon: "fas fa-coffee", notes: "Short, concentrated espresso." },
+                { name: "Coffee", volume: "4-6 oz", strength: 3, foam: "none", cold: false, icon: "fas fa-coffee", notes: "Regular strength coffee." },
+                { name: "Café Crème", volume: "8 oz", strength: 3, foam: "none", cold: false, icon: "fas fa-mug-hot", notes: "Long coffee with crema." },
+                { name: "Caffè Latte", volume: "8 oz", strength: 3, foam: "light", cold: false, icon: "fas fa-mug-hot", notes: "Espresso with steamed milk." },
+                { name: "Cappuccino", volume: "6 oz", strength: 4, foam: "thick", cold: false, icon: "fas fa-coffee", notes: "Traditional cappuccino." },
+                { name: "Flat White", volume: "6 oz", strength: 4, foam: "micro", cold: false, icon: "fas fa-coffee", notes: "Espresso with microfoam." },
+                { name: "Macchiato", volume: "2 oz", strength: 5, foam: "light", cold: false, icon: "fas fa-wine-glass", notes: "Espresso with foam dot." },
+                { name: "Hot Water", volume: "8 oz", strength: 0, foam: "none", cold: false, icon: "fas fa-tint", notes: "Hot water for tea." }
+            ],
+            E4: [
+                { name: "Espresso", volume: "1.5-2.5 oz", strength: 5, foam: "none", cold: false, icon: "fas fa-coffee", notes: "Basic espresso shot." },
+                { name: "Coffee", volume: "4-6 oz", strength: 3, foam: "none", cold: false, icon: "fas fa-coffee", notes: "Standard coffee." },
+                { name: "Americano", volume: "7.5 oz", strength: 4, foam: "none", cold: false, icon: "fas fa-mug-hot", notes: "Espresso with water." },
+                { name: "Caffè Latte", volume: "8 oz", strength: 3, foam: "light", cold: false, icon: "fas fa-mug-hot", notes: "Basic latte." },
+                { name: "Cappuccino", volume: "6 oz", strength: 4, foam: "thick", cold: false, icon: "fas fa-coffee", notes: "Simple cappuccino." },
+                { name: "Hot Water", volume: "8 oz", strength: 0, foam: "none", cold: false, icon: "fas fa-tint", notes: "Hot water." }
+            ]
+        };
 
+        let currentMachine = 'Z10';
         let currentFilter = 'all';
 
-        function createCupSVG(drink) {
-            const isIced = drink.iced || false;
-            const iceElements = isIced ? `
-                <ellipse cx="25" cy="18" rx="2" ry="1.5" fill="#E6F7FF" opacity="0.8"/>
-                <ellipse cx="32" cy="22" rx="1.5" ry="1" fill="#E6F7FF" opacity="0.8"/>
-                <ellipse cx="18" cy="25" rx="1.5" ry="1" fill="#E6F7FF" opacity="0.8"/>
-            ` : '';
-            
-            const steamElements = !isIced ? `
-                <g class="steam">
-                    <path d="M20 8 Q21 5 20 2" stroke="#E5E7EB" stroke-width="0.8" fill="none" opacity="0.6"/>
-                    <path d="M27 9 Q28 6 27 3" stroke="#E5E7EB" stroke-width="0.8" fill="none" opacity="0.6"/>
-                    <path d="M34 8 Q35 5 34 2" stroke="#E5E7EB" stroke-width="0.8" fill="none" opacity="0.6"/>
-                </g>
-            ` : '';
-
-            const cupHeight = Math.max(40, parseInt(drink.cupHeight) * 0.6);
-
-            return `
-                <svg width="50" height="${cupHeight}" viewBox="0 0 50 ${cupHeight}" class="cup">
-                    <!-- Cup body -->
-                    <path d="M10 12 L10 ${cupHeight - 6} Q10 ${cupHeight - 3} 13 ${cupHeight - 3} L37 ${cupHeight - 3} Q40 ${cupHeight - 3} 40 ${cupHeight - 6} L40 12 Q40 9 37 9 L13 9 Q10 9 10 12 Z" 
-                          fill="rgba(255,255,255,0.9)" 
-                          stroke="#D1D5DB" 
-                          stroke-width="0.8"/>
-                    
-                    <!-- Handle -->
-                    <path d="M40 16 Q46 16 46 22 Q46 28 40 28" 
-                          fill="none" 
-                          stroke="#D1D5DB" 
-                          stroke-width="1.5"/>
-                    
-                    <!-- Liquid -->
-                    <path d="M11.5 13.5 L11.5 ${cupHeight - 7.5} Q11.5 ${cupHeight - 5} 14 ${cupHeight - 5} L36 ${cupHeight - 5} Q38.5 ${cupHeight - 5} 38.5 ${cupHeight - 7.5} L38.5 13.5 Z" 
-                          fill="${drink.liquidColor}"/>
-                    
-                    ${drink.foamHeight !== "0px" ? `
-                    <!-- Foam -->
-                    <ellipse cx="25" cy="13.5" rx="14" ry="${Math.max(2, parseInt(drink.foamHeight)/3)}" 
-                             fill="#FFFBF0"/>
-                    ` : ''}
-                    
-                    ${iceElements}
-                    
-                    <!-- Cup rim highlight -->
-                    <ellipse cx="25" cy="10.5" rx="15" ry="2" fill="rgba(255,255,255,0.6)"/>
-                </svg>
-            `;
+        function getFoamIcon(foamType) {
+            switch(foamType) {
+                case 'none': return 'fas fa-ban';
+                case 'light': return 'fas fa-cloud';
+                case 'thick': return 'fas fa-cloud';
+                case 'micro': return 'fas fa-circle';
+                case 'layered': return 'fas fa-layer-group';
+                default: return 'fas fa-cloud';
+            }
         }
 
-        let currentIndex = 0;
-        let filteredDrinks = drinks;
+        function getFoamText(foamType) {
+            switch(foamType) {
+                case 'none': return 'No foam';
+                case 'light': return 'Light';
+                case 'thick': return 'Thick';
+                case 'micro': return 'Micro';
+                case 'layered': return 'Layered';
+                default: return 'Foam';
+            }
+        }
 
         function renderDrinks() {
-            const grid = document.getElementById('drinks-grid');
-            filteredDrinks = currentFilter === 'all' 
-                ? drinks 
-                : drinks.filter(drink => drink.category.includes(currentFilter));
-
-            // Create two rows
-            const firstRow = filteredDrinks.slice(0, Math.ceil(filteredDrinks.length / 2));
-            const secondRow = filteredDrinks.slice(Math.ceil(filteredDrinks.length / 2));
-
-            grid.innerHTML = `
-                <div class="flex flex-col gap-4">
-                    <div class="flex gap-4">
-                        ${firstRow.map(drink => createDrinkCard(drink)).join('')}
-                    </div>
-                    <div class="flex gap-4">
-                        ${secondRow.map(drink => createDrinkCard(drink)).join('')}
-                    </div>
-                </div>
-            `;
+            const grid = document.getElementById('drinksGrid');
+            const drinks = drinkData[currentMachine] || [];
             
-            currentIndex = 0;
-            updateCarouselPosition();
-        }
-
-        function createDrinkCard(drink) {
-            return `
-                <div class="drink-card glass-card rounded-2xl p-4 card-hover cursor-pointer relative" 
-                     onclick="showDrinkDetail('${drink.name}')">
-                    <div class="absolute top-2 right-2 text-xs click-indicator text-black rounded-full w-5 h-5 flex items-center justify-center font-bold">
-                        !
-                    </div>
-                    <div class="cup-container flex justify-center mb-3">
-                        ${createCupSVG(drink)}
-                    </div>
-                    <h3 class="text-sm font-bold text-gray-800 text-center mb-2">${drink.name}</h3>
-                    <div class="text-center">
-                        <span class="luxury-badge text-black px-3 py-1 rounded-full text-xs font-bold">
-                            ${drink.volume}
-                        </span>
-                    </div>
-                </div>
-            `;
-        }
-
-        function scrollCarousel(direction) {
-            const maxIndex = Math.max(0, Math.ceil(filteredDrinks.length / 2) - 4);
-            currentIndex = Math.max(0, Math.min(maxIndex, currentIndex + direction));
-            updateCarouselPosition();
-        }
-
-        function updateCarouselPosition() {
-            const grid = document.getElementById('drinks-grid');
-            const cardWidth = 175; // 160px + 15px gap
-            const offset = -currentIndex * cardWidth;
-            grid.style.transform = `translateX(${offset}px)`;
-        }
-
-        function filterDrinks(category) {
-            currentFilter = category;
-            
-            // Update active filter button
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
+            const filteredDrinks = drinks.filter(drink => {
+                if (currentFilter === 'all') return true;
+                if (currentFilter === 'hot') return !drink.cold;
+                if (currentFilter === 'cold') return drink.cold;
+                if (currentFilter === 'milk') return drink.foam !== 'none';
+                return true;
             });
-            event.target.classList.add('active');
-            
+
+            grid.innerHTML = filteredDrinks.map(drink => `
+                <div class="drink-card" onclick="toggleExpanded(this)">
+                    ${drink.cold ? '<div class="cold-badge"><i class="fas fa-snowflake"></i> Cold</div>' : ''}
+                    <div class="drink-header">
+                        <div class="drink-info">
+                            <div class="drink-name">${drink.name}</div>
+                            <div class="drink-volume">${drink.volume}</div>
+                        </div>
+                        <div class="drink-icon">
+                            <i class="${drink.icon}"></i>
+                        </div>
+                    </div>
+                    <div class="drink-details">
+                        <div class="strength-container">
+                            <div class="strength-label">Strength</div>
+                            <div class="strength-beans">
+                                ${Array.from({length: 5}, (_, i) => 
+                                    `<div class="bean ${i < drink.strength ? 'filled' : ''}"></div>`
+                                ).join('')}
+                            </div>
+                        </div>
+                        <div class="foam-indicator">
+                            <i class="foam-icon ${getFoamIcon(drink.foam)}"></i>
+                            <span class="foam-text">${getFoamText(drink.foam)}</span>
+                        </div>
+                    </div>
+                    <div class="expanded-details">
+                        <div class="tasting-notes">${drink.notes}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleExpanded(card) {
+            card.classList.toggle('expanded');
+        }
+
+        // Event listeners
+        document.getElementById('machineSelect').addEventListener('change', (e) => {
+            currentMachine = e.target.value;
             renderDrinks();
-        }
+        });
 
-        function showDrinkDetail(drinkName) {
-            const drink = drinks.find(d => d.name === drinkName);
-            if (!drink) return;
-
-            document.getElementById('modal-title').textContent = drink.name;
-            document.getElementById('modal-description').textContent = drink.description;
-            document.getElementById('modal-volume').textContent = drink.volume;
-            document.getElementById('modal-intensity').textContent = drink.intensity;
-            document.getElementById('modal-foam').textContent = drink.foam;
-            document.getElementById('modal-milk').textContent = drink.milk;
-            document.getElementById('modal-cup-type').textContent = drink.cupType;
-            document.getElementById('modal-cup').innerHTML = createCupSVG(drink);
-
-            const modal = document.getElementById('drink-modal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            setTimeout(() => {
-                modal.querySelector('.luxury-modal').classList.remove('scale-95');
-                modal.querySelector('.luxury-modal').classList.add('scale-100');
-            }, 10);
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('drink-modal');
-            modal.querySelector('.luxury-modal').classList.remove('scale-100');
-            modal.querySelector('.luxury-modal').classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            }, 300);
-        }
-
-
-
-        // Close modal when clicking outside
-        document.getElementById('drink-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentFilter = e.target.dataset.filter;
+                renderDrinks();
+            });
         });
 
         // Initialize
         renderDrinks();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95f380b49615f02b',t:'MTc1MjUyMjE0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95f456b1c24cd46e',t:'MTc1MjUzMDkwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
